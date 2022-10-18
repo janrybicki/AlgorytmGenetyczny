@@ -22,7 +22,7 @@ namespace AlgorytmGenetyczny.Controllers
         // POST: XController/Create
         [HttpPost]
         //[ValidateAntiForgeryToken]
-        public ActionResult Create(XModel xModel)//5.09801
+        public ActionResult Create(XModel xModel)
         {
             var random = new Random();
             var l = Math.Ceiling(Math.Log2((xModel.RangeEnd - xModel.RangeBeginning) / xModel.Accuracy + 1));
