@@ -13,12 +13,6 @@ namespace AlgorytmGenetyczny.Controllers
             return View(x);
         }
 
-        // GET: XController/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
         // GET: XController/Create 
         public ActionResult Create()
         {
@@ -53,6 +47,14 @@ namespace AlgorytmGenetyczny.Controllers
                     FunctionValue = functionValueRounded
                 });
             }
+            return RedirectToAction(nameof(Index));
+        }
+        // POST: Task/Delete/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete()
+        {
+            x.Clear();
             return RedirectToAction(nameof(Index));
         }
     }
