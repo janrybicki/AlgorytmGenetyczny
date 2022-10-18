@@ -37,7 +37,7 @@ namespace AlgorytmGenetyczny.Controllers
                 var xReal2Roundend = Math.Abs(xReal2 % xModel.Accuracy) < xModel.Accuracy / 2 ? xReal2 - xReal2 % xModel.Accuracy : xReal2 + Math.Sign(xReal2) * xModel.Accuracy - xReal2 % xModel.Accuracy;
                 var functionValue = (xReal2Roundend % 1) * (Math.Cos(xReal2Roundend * 20 * Math.PI) - Math.Sin(xReal2Roundend));
                 var functionValueRounded = Math.Abs(functionValue % xModel.Accuracy) < xModel.Accuracy / 2 ? functionValue - functionValue % xModel.Accuracy : functionValue + Math.Sign(functionValue) * xModel.Accuracy - functionValue % xModel.Accuracy;
-                x.Add(new XModel()
+                x.Add(new XModel(xModel)
                 {
                     XReal1 = xReal1,
                     XInt1 = xInt1,
