@@ -9,7 +9,7 @@ namespace AlgorytmGenetyczny.Models
         [DisplayName("b")]
         public double RangeEnd { get; set; }
         [DisplayName("d")]
-        public double Accuracy { get; set; }
+        public double Precision { get; set; }
         [DisplayName("N")]
         public int Number { get; set; }
         [DisplayName("xReal")]
@@ -29,11 +29,8 @@ namespace AlgorytmGenetyczny.Models
         {
             this.RangeBeginning = xModel.RangeBeginning;
             this.RangeEnd = xModel.RangeEnd;
-            this.Accuracy = xModel.Accuracy;
+            this.Precision = xModel.Precision;
         }
-        public XModel()
-        {
-
-        }
+        public XModel() {}
     }
 }
