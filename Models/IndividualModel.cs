@@ -2,7 +2,7 @@
 
 namespace AlgorytmGenetyczny.Models
 {
-    public class XModel
+    public class IndividualModel
     {
         [DisplayName("a")]
         public float RangeBeginning { get; set; }
@@ -25,12 +25,12 @@ namespace AlgorytmGenetyczny.Models
         [DisplayName("f(x)")]
         public float FunctionValue { get; set; }
 
-        public XModel(XModel xModel)
+        public IndividualModel(IndividualModel xModel)
         {
             this.RangeBeginning = xModel.RangeBeginning;
             this.RangeEnd = xModel.RangeEnd;
             this.Precision = xModel.Precision;
         }
-        public XModel() { }
+        public IndividualModel() { }
     }
 }

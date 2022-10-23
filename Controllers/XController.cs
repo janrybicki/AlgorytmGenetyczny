@@ -7,7 +7,7 @@ namespace AlgorytmGenetyczny.Controllers
 {
     public class XController : Controller
     {
-        private static IList<XModel> x = new List<XModel>();
+        private static IList<IndividualModel> x = new List<IndividualModel>();
         // GET: XController
         public ActionResult Index()
         {
@@ -23,7 +23,7 @@ namespace AlgorytmGenetyczny.Controllers
         // POST: XController/Create
         [HttpPost]
         //[ValidateAntiForgeryToken]
-        public ActionResult Create(XModel xModel)
+        public ActionResult Create(IndividualModel xModel)
         {
             var random = new Random();
             var l = (int)Math.Ceiling(Math.Log2((xModel.RangeEnd - xModel.RangeBeginning) / xModel.Precision + 1));
@@ -44,7 +44,7 @@ namespace AlgorytmGenetyczny.Controllers
                     : xReal2 + Math.Sign(xReal2) * xModel.Precision - xReal2 % xModel.Precision;
                 var functionValue = (xReal2Roundend % 1) * (Math.Cos(xReal2Roundend * 20 * Math.PI) - Math.Sin(xReal2Roundend));
 
-                x.Add(new XModel(xModel)
+                x.Add(new IndividualModel(xModel)
                 {
                     XReal1 = (float)xReal1,
                     XInt1 = xInt1,

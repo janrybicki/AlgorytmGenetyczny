@@ -1,0 +1,82 @@
+﻿@model PopulationModel
+
+@{
+    ViewData["Title"] = "Index";
+    int i = 0;
+}
+
+<h1>Index</h1>
+
+<form asp-action="Create">
+    <div class="form-group">
+        <label asp-for="RangeBeginning" class="control-label"></label>
+        <input asp-for="RangeBeginning" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="RangeEnd" class="control-label"></label>
+        <input asp-for="RangeEnd" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Precision" class="control-label"></label>
+        <input asp-for="Precision" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Number" class="control-label"></label>
+        <input asp-for="Number" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Wprowadź" class="btn btn-primary" />
+    </div>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Lp</th>
+            <th>
+                @Html.DisplayNameFor(model => model.Individuals[0].XReal1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Individuals[0].XInt1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Individuals[0].XBin)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Individuals[0].XInt2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Individuals[0].XReal2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Individuals[0].FunctionValue)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Individuals) {
+        <tr>
+            <td>@(++i)</td>
+            <td>
+                @Html.DisplayFor(modelItem => item.XReal1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.XInt1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.XBin)
+            </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.XInt2)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.XReal2)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FunctionValue)
+                </td>
+        </tr>
+}
+    </tbody>
+</table>
