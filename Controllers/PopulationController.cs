@@ -54,5 +54,13 @@ namespace AlgorytmGenetyczny.Controllers
             }
             return RedirectToAction(nameof(Index));
         }
+        // POST: Task/Delete/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete()
+        {
+            population.Individuals.Clear();
+            return RedirectToAction(nameof(Index));
+        }
     }
 }

@@ -55,18 +55,19 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Individuals) {
-        <tr>
-            <td>@(++i)</td>
-            <td>
-                @Html.DisplayFor(modelItem => item.XReal1)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.XInt1)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.XBin)
-            </td>
+        @foreach (var item in Model.Individuals)
+        {
+            <tr>
+                <td>@(++i)</td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.XReal1)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.XInt1)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.XBin)
+                </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.XInt2)
                 </td>
@@ -76,7 +77,10 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.FunctionValue)
                 </td>
-        </tr>
-}
+            </tr>
+        }
     </tbody>
 </table>
+<form asp-action="Delete">
+    <input type="submit" value="Wyczyść" class="btn btn-danger" />
+</form>
