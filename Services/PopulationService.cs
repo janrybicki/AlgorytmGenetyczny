@@ -30,7 +30,7 @@ namespace AlgorytmGenetyczny.Services
                 var xReal2Roundend = Math.Abs(xReal2 % populationModel.Precision) < populationModel.Precision / 2
                 ? xReal2 - xReal2 % populationModel.Precision
                     : xReal2 + Math.Sign(xReal2) * populationModel.Precision - xReal2 % populationModel.Precision;
-                var functionValue = (xReal2Roundend % 1) * (Math.Cos(xReal2Roundend * 20 * Math.PI) - Math.Sin(xReal2Roundend));
+                var functionValue = (Math.IEEERemainder(xReal2Roundend, 1)) * (Math.Cos(xReal2Roundend * 20 * Math.PI) - Math.Sin(xReal2Roundend));
 
                 Population = populationModel;
                 Population.Individuals.Add(new IndividualModel()
