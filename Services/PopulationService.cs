@@ -5,7 +5,7 @@ namespace AlgorytmGenetyczny.Services
 {
     public class PopulationService : IPopulationService
     {
-        public PopulationModel Population { get; set; }
+        public PopulationModel Population { get; private set; }
         public PopulationService()
         {
             Population = new PopulationModel();
@@ -31,7 +31,7 @@ namespace AlgorytmGenetyczny.Services
                 ? xReal2 - xReal2 % populationModel.Precision
                     : xReal2 + Math.Sign(xReal2) * populationModel.Precision - xReal2 % populationModel.Precision;
                 var functionValue = (Math.IEEERemainder(xReal2Roundend, 1)) * (Math.Cos(xReal2Roundend * 20 * Math.PI) - Math.Sin(xReal2Roundend));
-
+                //rozwazyc powrot do %
                 Population = populationModel;
                 Population.Individuals.Add(new IndividualModel()
                 {

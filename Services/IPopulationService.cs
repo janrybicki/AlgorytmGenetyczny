@@ -4,7 +4,7 @@ namespace AlgorytmGenetyczny.Services
 {
     public interface IPopulationService
     {
-        PopulationModel Population { get; set; }
+        PopulationModel Population { get; }
         void CreatePopulation(PopulationModel populationModel);
         void DeletePopulation();
     }
