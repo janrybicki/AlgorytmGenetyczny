@@ -6,15 +6,6 @@ namespace AlgorytmGenetyczny.Models
 {
     public class IndividualModel
     {
-        [DisplayName("a")]
-        public float RangeBeginning { get; set; }
-        [DisplayName("b")]
-        public float RangeEnd { get; set; }
-        [DisplayName("d")]
-        public double Precision { get; set; }
-        [DisplayName("N")]
-        public int Number { get; set; }
-        [DisplayName("xReal")]
         public float XReal1 { get; set; }
         [DisplayName("xInt")]
         public int XInt1 { get; set; }
@@ -26,14 +17,6 @@ namespace AlgorytmGenetyczny.Models
         public float XReal2 { get; set; }
         [DisplayName("f(x)")]  
         public float FunctionValue { get; set; }
-
-        public IndividualModel(IndividualModel xModel)
-        {
-            this.RangeBeginning = xModel.RangeBeginning;
-            this.RangeEnd = xModel.RangeEnd;
-            this.Precision = xModel.Precision;
-        }
-        public IndividualModel() { }
 
         public static double GenerateRandomXReal(double rangeBeginning, double rangeEnd)
         {
