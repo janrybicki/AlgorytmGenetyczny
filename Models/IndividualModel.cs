@@ -15,11 +15,16 @@ namespace AlgorytmGenetyczny.Models
         public int XInt2 { get; set; }
         [DisplayName("xReal")]
         public float XReal2 { get; set; }
-        [DisplayName("f(x)")]  
+        [DisplayName("f(x)")]
         public float FunctionValue { get; set; }
         public float TranslatedFunctionValue { get; set; }
         public float SurviveProbability { get; set; }
         public float SurviveDistributionFunction { get; set; }
+        public bool IsSurvivor { get; set; } = false;
+        public float R { get; set; }
+        public bool IsParent { get; set; } = false;
+        public string ChildXBin { get; set; }
+        public int CrossingPoint { get; set; }
 
         public static double GenerateRandomXReal(double rangeBeginning, double rangeEnd)
         {
@@ -36,7 +41,16 @@ namespace AlgorytmGenetyczny.Models
                 ? xReal - xReal % precision
                     : xReal + Math.Sign(xReal) * precision - xReal % precision;
         }
-
+        public string XRealToXBin(int binaryLength, float rangeBeginning, float rangeEnd)
+        {
+            var xInt = (int)Math.Round(1 / (rangeEnd - rangeBeginning) * (XReal1 - rangeBeginning) * (Math.Pow(2, binaryLength) - 1));
+            var xBin = new StringBuilder(Convert.ToString(xInt, 2));
+            return xBin.Insert(0, new String('0', binaryLength - xBin.Length)).ToString();
+        }
+        //public void XBinToXReal(StringBuilder)
+        //{
+        //    XReal2 = Convert.ToInt32(xBin, 2);
+        //}
         public static int XRealToXInt(double xReal, int binaryLength, double rangeBeginning, double rangeEnd)
         {
             return (int)Math.Round(1 / (rangeEnd - rangeBeginning) * (xReal - rangeBeginning) * (Math.Pow(2, binaryLength) - 1));
@@ -44,9 +58,9 @@ namespace AlgorytmGenetyczny.Models
 
         public static string XIntToXBin(int xInt, int binaryLength)
         {
-            var sb = new StringBuilder(Convert.ToString(xInt, 2));
-            sb.Insert(0, new String('0', binaryLength - sb.Length));
-            return sb.ToString();
+            var xBin = new StringBuilder(Convert.ToString(xInt, 2));
+            xBin.Insert(0, new String('0', binaryLength - xBin.Length));
+            return xBin.ToString();
         }
         public static int XBinToXInt(string xBin)
         {
@@ -56,5 +70,6 @@ namespace AlgorytmGenetyczny.Models
         {
             return xInt * (rangeEnd - rangeBeginning) / (Math.Pow(2, binaryLength) - 1) + rangeBeginning;
         }
+
     }
 }

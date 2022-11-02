@@ -24,6 +24,10 @@
         <label asp-for="Number" class="control-label"></label>
         <input asp-for="Number" class="form-control" />
     </div>
+    <div class="form-group">
+        <label asp-for="CrossingProbability" class="control-label"></label>
+        <input asp-for="CrossingProbability" class="form-control" />
+    </div>
 
     <div class="form-group">
         <input type="submit" value="Wprowadź" class="btn btn-primary" />
@@ -61,6 +65,27 @@
             <th>
                 @Html.DisplayNameFor(model => model.Individuals[0].SurviveDistributionFunction)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Individuals[0].R)
+            </th>
+            <th>
+                XReal
+            </th>
+            <th>
+                xBin
+            </th>
+            <th>
+                xBin - Rodzice
+            </th>
+            <th>
+                Pc
+            </th>
+            <th>
+                Populacja dzieci
+            </th>
+            <th>
+                Populacja po krzyżowaniu
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -95,6 +120,50 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.SurviveDistributionFunction)
                 </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.R)
+                </td>
+                <td>
+                    @if (item.IsSurvivor)
+                    {
+                        @Html.DisplayFor(modelItem => item.XReal1)
+                    }
+                </td>
+                <td>
+                    @if (item.IsSurvivor)
+                    {
+                        @Html.DisplayFor(modelItem => item.XBin)
+                    }
+                </td>
+                <td>
+                    @if (item.IsParent)
+                    {
+                        @Html.DisplayFor(modelItem => item.XBin)
+                    }
+                </td>
+                <th>
+                    @if(item.IsParent)
+                    {
+                        @Html.DisplayFor(modelItem => item.CrossingPoint)
+                    }
+                </th>
+                <td>
+                    @if (item.IsParent)
+                    {
+                        @Html.DisplayFor(modelItem => item.ChildXBin)
+                    }
+                </td>
+                <td>
+                    @if (item.IsParent)
+                    {
+                        @Html.DisplayFor(modelItem => item.ChildXBin)
+                    }
+                    else if(!item.IsParent && item.IsSurvivor)
+                    {
+                        @Html.DisplayFor(modelItem => item.XBin)
+                    }
+                </td>
+
             </tr>
         }
     </tbody>

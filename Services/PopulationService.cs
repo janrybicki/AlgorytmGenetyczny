@@ -14,6 +14,7 @@ namespace AlgorytmGenetyczny.Services
         {
             Population = populationModel;
             var l = (int)Math.Ceiling(Math.Log2((populationModel.RangeEnd - populationModel.RangeBeginning) / populationModel.Precision + 1));
+            Population.CalculateBinaryLengh();
             for (int i = 0; i < populationModel.Number; i++)
             {
                 var xReal1 = IndividualModel.GenerateRandomXReal(populationModel.RangeBeginning, populationModel.RangeEnd);
@@ -43,7 +44,7 @@ namespace AlgorytmGenetyczny.Services
             }
             var sumOfTranslatedFunctionValues = Population.Individuals.Select(x => x.TranslatedFunctionValue).Sum();
 
-            for (int i = 0; i < Population.Individuals.Count(); i++)
+            for (int i = 0; i < Population.Number; i++)
             {
                 Population.Individuals[i].SurviveProbability = Population.Individuals[i].TranslatedFunctionValue / sumOfTranslatedFunctionValues;
                 if (i == 0)
@@ -55,6 +56,8 @@ namespace AlgorytmGenetyczny.Services
                     Population.Individuals[i].SurviveDistributionFunction = Population.Individuals[i].SurviveProbability + Population.Individuals[i-1].SurviveDistributionFunction;
                 }
             }
+            Population.Selection();
+            Population.Cross();
         }
 
         public void DeletePopulation()
