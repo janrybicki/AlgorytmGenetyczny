@@ -24,6 +24,7 @@ namespace AlgorytmGenetyczny.Services
                 var xReal2 = IndividualModel.XIntToXReal(xInt2, populationModel.RangeBeginning, populationModel.RangeEnd, l);
                 var xReal2Roundend = IndividualModel.Round(xReal2, populationModel.Precision);
                 var functionValue = IndividualModel.Function(xReal2Roundend);
+
                 Population.Individuals.Add(new IndividualModel()
                 {
                     XReal1 = (float)xReal1Rounded,
@@ -33,6 +34,26 @@ namespace AlgorytmGenetyczny.Services
                     XReal2 = (float)xReal2Roundend,
                     FunctionValue = (float)functionValue
                 });
+            }
+            var minimalFunctionValue = Population.Individuals.Select(x => x.FunctionValue).Min();
+
+            foreach (var individual in Population.Individuals)
+            {
+                individual.TranslatedFunctionValue = individual.FunctionValue - minimalFunctionValue + (float)Population.Precision;
+            }
+            var sumOfTranslatedFunctionValues = Population.Individuals.Select(x => x.TranslatedFunctionValue).Sum();
+
+            for (int i = 0; i < Population.Individuals.Count(); i++)
+            {
+                Population.Individuals[i].SurviveProbability = Population.Individuals[i].TranslatedFunctionValue / sumOfTranslatedFunctionValues;
+                if (i == 0)
+                {
+                    Population.Individuals[i].SurviveDistributionFunction = Population.Individuals[i].SurviveProbability;
+                }
+                else
+                {
+                    Population.Individuals[i].SurviveDistributionFunction = Population.Individuals[i].SurviveProbability + Population.Individuals[i-1].SurviveDistributionFunction;
+                }
             }
         }
 

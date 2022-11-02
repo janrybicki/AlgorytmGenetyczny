@@ -52,6 +52,15 @@
             <th>
                 @Html.DisplayNameFor(model => model.Individuals[0].FunctionValue)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Individuals[0].TranslatedFunctionValue)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Individuals[0].SurviveProbability)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Individuals[0].SurviveDistributionFunction)
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -76,6 +85,15 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.FunctionValue)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TranslatedFunctionValue)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SurviveProbability)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SurviveDistributionFunction)
                 </td>
             </tr>
         }

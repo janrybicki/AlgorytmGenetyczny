@@ -17,6 +17,9 @@ namespace AlgorytmGenetyczny.Models
         public float XReal2 { get; set; }
         [DisplayName("f(x)")]  
         public float FunctionValue { get; set; }
+        public float TranslatedFunctionValue { get; set; }
+        public float SurviveProbability { get; set; }
+        public float SurviveDistributionFunction { get; set; }
 
         public static double GenerateRandomXReal(double rangeBeginning, double rangeEnd)
         {
