@@ -58,6 +58,13 @@ namespace AlgorytmGenetyczny.Services
             }
             Population.Selection();
             Population.Cross();
+            Population.Mutation();
+            foreach (var individual in Population.Individuals)
+            {
+                var xRealAfterMutation = individual.XBinToXReal(individual.XBinAfterMutation, Population.RangeBeginning, Population.RangeEnd, Population.BinaryLength);
+                individual.XRealAfterMutation = (float)IndividualModel.Round(xRealAfterMutation, Population.Precision);
+                individual.FunctionValueAfterMutation = (float)IndividualModel.Function(individual.XRealAfterMutation);
+            }
         }
 
         public void DeletePopulation()

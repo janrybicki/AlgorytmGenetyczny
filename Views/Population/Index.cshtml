@@ -28,6 +28,10 @@
         <label asp-for="CrossingProbability" class="control-label"></label>
         <input asp-for="CrossingProbability" class="form-control" />
     </div>
+    <div class="form-group">
+        <label asp-for="MutationProbability" class="control-label"></label>
+        <input asp-for="MutationProbability" class="form-control" />
+    </div>
 
     <div class="form-group">
         <input type="submit" value="Wprowadź" class="btn btn-primary" />
@@ -41,7 +45,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.Individuals[0].XReal1)
             </th>
-            <th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.Individuals[0].XInt1)
             </th>
             <th>
@@ -52,7 +56,7 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Individuals[0].XReal2)
-            </th>
+            </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.Individuals[0].FunctionValue)
             </th>
@@ -86,6 +90,14 @@
             <th>
                 Populacja po krzyżowaniu
             </th>
+            <th>
+                Mutowane bity
+            </th>
+            <th>
+                xBin po mutacji
+            </th>
+            <th>xReal po mutacji</th>
+            <th>f(x) po mutacji</th>
         </tr>
     </thead>
     <tbody>
@@ -96,7 +108,7 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.XReal1)
                 </td>
-                <td>
+                @*<td>
                     @Html.DisplayFor(modelItem => item.XInt1)
                 </td>
                 <td>
@@ -107,7 +119,7 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.XReal2)
-                </td>
+                </td>*@
                 <td>
                     @Html.DisplayFor(modelItem => item.FunctionValue)
                 </td>
@@ -161,6 +173,30 @@
                     else if(!item.IsParent && item.IsSurvivor)
                     {
                         @Html.DisplayFor(modelItem => item.XBin)
+                    }
+                </td>
+                <td>
+                    @if(item.MutantBits.Count > 0)
+                    {
+                        @Html.DisplayFor(modelItem => item.MutantBits)
+                    }
+                </td>
+                <td>
+                    @if (item.IsSurvivor)
+                    {
+                        @Html.DisplayFor(modelItem => item.XBinAfterMutation)
+                    }
+                </td>
+                <td>
+                    @if (item.IsSurvivor)
+                    {
+                        @Html.DisplayFor(modelItem => item.XRealAfterMutation)
+                    }
+                </td>
+                <td>
+                    @if (item.IsSurvivor)
+                    {
+                        @Html.DisplayFor(modelItem => item.FunctionValueAfterMutation)
                     }
                 </td>
 

@@ -16,6 +16,8 @@ namespace AlgorytmGenetyczny.Models
         public int BinaryLength { get; set; }
         [DisplayName("pk")]
         public float CrossingProbability { get; set; }
+        [DisplayName("pm")]
+        public float MutationProbability { get; set; }
         public List<IndividualModel> Individuals { get; set; }
 
         public PopulationModel()
@@ -29,7 +31,6 @@ namespace AlgorytmGenetyczny.Models
         public void Selection()
         {
             var random = new Random();
-            //return random.NextDouble();
             for (int i = 0; i < Number; i++)
             {
                 var r = (float)random.NextDouble();
@@ -78,6 +79,47 @@ namespace AlgorytmGenetyczny.Models
 
                 parents[i].ChildXBin = firstParentStringBuilder.ToString();
                 parents[i + 1].ChildXBin = secondParentStringBuilder.ToString();
+            }
+        }
+        public void Mutation()
+        {
+            var individualsToMutate = Individuals.Where(x => x.IsSurvivor).ToList();
+            var childrenToMutate = Individuals.Where(x => x.IsParent).ToList();
+            var random = new Random();
+            foreach (var individual in individualsToMutate)
+            {
+                var sb = new StringBuilder();
+                for (int i = 0; i < individual.XBin.Count(); i++)
+                {
+                    if(random.NextDouble() < MutationProbability)
+                    {
+                        sb.Append(individual.XBin[i] == '0' ? '1' : '0');
+                        individual.MutantBits.Add(i);
+                    }
+                    else
+                    {
+                        sb.Append(individual.XBin[i]);
+                    }
+                }
+                individual.XBinAfterMutation = sb.ToString();
+            }
+            foreach (var child in childrenToMutate)
+            {
+                child.MutantBits.Clear();
+                var sb = new StringBuilder();
+                for (int i = 0; i < child.ChildXBin.Count(); i++)
+                {
+                    if (random.NextDouble() < MutationProbability)
+                    {
+                        sb.Append(child.ChildXBin[i] == '0' ? '1' : '0');
+                        child.MutantBits.Add(i);
+                    }
+                    else
+                    {
+                        sb.Append(child.ChildXBin[i]);
+                    }
+                }
+                child.XBinAfterMutation = sb.ToString();
             }
         }
     }
