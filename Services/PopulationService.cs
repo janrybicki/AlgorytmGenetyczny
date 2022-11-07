@@ -26,7 +26,7 @@ namespace AlgorytmGenetyczny.Services
                 var xReal2Roundend = IndividualModel.Round(xReal2, populationModel.Precision);
                 var functionValue = IndividualModel.Function(xReal2Roundend);
 
-                Population.Individuals.Add(new IndividualModel()
+                Population.Individuals.Add(new IndividualModel()//xint i xreal2 beda do wywalenia
                 {
                     XReal1 = (float)xReal1Rounded,
                     XInt1 = xInt1,

@@ -23,13 +23,14 @@ namespace AlgorytmGenetyczny.Models
         public float SurviveProbability { get; set; }
         [DisplayName("q(x)")]
         public float SurviveDistributionFunction { get; set; }
-        public bool IsSurvivor { get; set; } = false;
+        //public bool IsSurvivor { get; set; } = false;
         [DisplayName("r")]
         public float R { get; set; }
         public bool IsParent { get; set; } = false;
         public string ChildXBin { get; set; }
         public int CrossingPoint { get; set; }
         public List<int> MutantBits { get; set; }
+        public string MutantBitsWithSeparators { get; set; }
         public string XBinAfterMutation { get; set; }
         public float XRealAfterMutation { get; set; }
         public float FunctionValueAfterMutation { get; set; }
@@ -59,7 +60,13 @@ namespace AlgorytmGenetyczny.Models
             var xBin = new StringBuilder(Convert.ToString(xInt, 2));
             return xBin.Insert(0, new String('0', binaryLength - xBin.Length)).ToString();
         }
-        public float XBinToXReal(string xBin, double rangeBeginning, double rangeEnd, int binaryLength)
+        public static string XRealToXBin(int binaryLength, float rangeBeginning, float rangeEnd, float xReal)//do wywalenia pozniej
+        {
+            var xInt = (int)Math.Round(1 / (rangeEnd - rangeBeginning) * (xReal - rangeBeginning) * (Math.Pow(2, binaryLength) - 1));
+            var xBin = new StringBuilder(Convert.ToString(xInt, 2));
+            return xBin.Insert(0, new String('0', binaryLength - xBin.Length)).ToString();
+        }
+        public float XBinToXReal(string xBin, double rangeBeginning, double rangeEnd, int binaryLength)//rozwazyc zmiane xBin na property XBin
         {
             var xInt = Convert.ToInt32(xBin, 2);
             return (float)(xInt * (rangeEnd - rangeBeginning) / (Math.Pow(2, binaryLength) - 1) + rangeBeginning);

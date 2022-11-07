@@ -39,7 +39,12 @@ namespace AlgorytmGenetyczny.Models
                 {
                     if (r < individual.SurviveDistributionFunction)
                     {
-                        individual.IsSurvivor = true;
+                        //individual.IsSurvivor = true;
+                        //break;
+                        Individuals[i].XReal2 = individual.XReal1;
+                        Individuals[i].XBin = IndividualModel.XRealToXBin(BinaryLength,RangeBeginning, RangeEnd, Individuals[i].XReal2);
+                        //pozniej przestawic na:
+                        //Individuals[i] = individual;
                         break;
                     }
                 }
@@ -50,7 +55,7 @@ namespace AlgorytmGenetyczny.Models
             var random = new Random();
             foreach (var individual in Individuals)
             {
-                if (individual.IsSurvivor && random.NextDouble() < CrossingProbability)
+                if (random.NextDouble() < CrossingProbability)
                 {
                     individual.IsParent = true;
                 }
@@ -67,10 +72,12 @@ namespace AlgorytmGenetyczny.Models
                 var crossingPoint = random.Next(1, BinaryLength);
                 parents[i].CrossingPoint = crossingPoint;
                 parents[i + 1].CrossingPoint = crossingPoint;
-                
-                var firstParent = parents[i].XRealToXBin(BinaryLength,RangeBeginning, RangeEnd);
-                var secondParent = parents[i+1].XRealToXBin(BinaryLength, RangeBeginning, RangeEnd);
-                
+
+                //var firstParent = parents[i].XRealToXBin(BinaryLength,RangeBeginning, RangeEnd);
+                var firstParent = IndividualModel.XRealToXBin(BinaryLength, RangeBeginning, RangeEnd, parents[i].XReal2);
+                //var secondParent = parents[i+1].XRealToXBin(BinaryLength, RangeBeginning, RangeEnd);
+                var secondParent = IndividualModel.XRealToXBin(BinaryLength, RangeBeginning, RangeEnd, parents[i + 1].XReal2);
+
                 var firstParentStringBuilder = new StringBuilder();
                 firstParentStringBuilder.Append(firstParent.Substring(0, crossingPoint)).Append(secondParent.Substring(crossingPoint, BinaryLength - crossingPoint));
                 
@@ -83,7 +90,7 @@ namespace AlgorytmGenetyczny.Models
         }
         public void Mutation()
         {
-            var individualsToMutate = Individuals.Where(x => x.IsSurvivor).ToList();
+            var individualsToMutate = Individuals.ToList();//poprawic to pozniej
             var childrenToMutate = Individuals.Where(x => x.IsParent).ToList();
             var random = new Random();
             foreach (var individual in individualsToMutate)
@@ -102,6 +109,7 @@ namespace AlgorytmGenetyczny.Models
                     }
                 }
                 individual.XBinAfterMutation = sb.ToString();
+                individual.MutantBitsWithSeparators = String.Join(", ", individual.MutantBits);
             }
             foreach (var child in childrenToMutate)
             {
@@ -120,6 +128,7 @@ namespace AlgorytmGenetyczny.Models
                     }
                 }
                 child.XBinAfterMutation = sb.ToString();
+                child.MutantBitsWithSeparators = String.Join(", ", child.MutantBits);
             }
         }
     }

@@ -136,13 +136,13 @@
                     @Html.DisplayFor(modelItem => item.R)
                 </td>
                 <td>
-                    @if (item.IsSurvivor)
+                    @if (@*item.IsSurvivor*@ true)
                     {
-                        @Html.DisplayFor(modelItem => item.XReal1)
+                        @Html.DisplayFor(modelItem => item.XReal2)
                     }
                 </td>
                 <td>
-                    @if (item.IsSurvivor)
+                    @if (@*item.IsSurvivor*@ true )
                     {
                         @Html.DisplayFor(modelItem => item.XBin)
                     }
@@ -170,7 +170,7 @@
                     {
                         @Html.DisplayFor(modelItem => item.ChildXBin)
                     }
-                    else if(!item.IsParent && item.IsSurvivor)
+                    else if(!item.IsParent)
                     {
                         @Html.DisplayFor(modelItem => item.XBin)
                     }
@@ -178,23 +178,24 @@
                 <td>
                     @if(item.MutantBits.Count > 0)
                     {
-                        @Html.DisplayFor(modelItem => item.MutantBits)
+                        @Html.DisplayFor(modelItem => item.MutantBitsWithSeparators)
+
                     }
                 </td>
                 <td>
-                    @if (item.IsSurvivor)
+                    @if (true)
                     {
                         @Html.DisplayFor(modelItem => item.XBinAfterMutation)
                     }
                 </td>
                 <td>
-                    @if (item.IsSurvivor)
+                    @if (true)
                     {
                         @Html.DisplayFor(modelItem => item.XRealAfterMutation)
                     }
                 </td>
                 <td>
-                    @if (item.IsSurvivor)
+                    @if (true)
                     {
                         @Html.DisplayFor(modelItem => item.FunctionValueAfterMutation)
                     }
