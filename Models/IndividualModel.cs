@@ -8,31 +8,24 @@ namespace AlgorytmGenetyczny.Models
     {
         public float XReal { get; set; }
 
-        [DisplayName("xReal")]
         public float XRealAfterSelection { get; set; }
 
         public float XRealAfterMutation { get; set; }
 
-        [DisplayName("xBin")]
         public string XBinAfterSelection { get; set; } = string.Empty;
 
         public string XBinAfterCrossing { get; set; } = string.Empty;
 
         public string XBinAfterMutation { get; set; } = string.Empty;
 
-        [DisplayName("f(x)")]
         public float FunctionValue { get; set; }
 
-        [DisplayName("g(x)")]
         public float TranslatedFunctionValue { get; set; }
 
-        [DisplayName("p(x)")]
         public float SurviveProbability { get; set; }
 
-        [DisplayName("q(x)")]
         public float SurviveDistributionFunction { get; set; }
 
-        [DisplayName("r")]
         public float R { get; set; }
 
         public bool IsParent { get; set; } = false;

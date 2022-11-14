@@ -39,51 +39,51 @@
 <table class="table">
     <thead>
         <tr>
-            <th>Lp</th>
+            <th></th>
             <th>
-                @Html.DisplayNameFor(model => model.Individuals[0].XReal)
+                xReal
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Individuals[0].FunctionValue)
+                Function value
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Individuals[0].TranslatedFunctionValue)
+                Translated Function Value
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Individuals[0].SurviveProbability)
+                Survive probability
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Individuals[0].SurviveDistributionFunction)
+                Survive distribution function
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Individuals[0].R)
+                r
             </th>
             <th>
-                XReal
+                XReal after selection
             </th>
             <th>
-                xBin
+                xBin after selection
             </th>
             <th>
-                xBin - Rodzice
+                Parents
             </th>
             <th>
-                Pc
+                Crossing Point
             </th>
             <th>
-                Populacja dzieci
+                Children
             </th>
             <th>
-                Populacja po krzyżowaniu
+                xBin after crossing
             </th>
             <th>
-                Mutowane bity
+                Mutant bits
             </th>
             <th>
-                xBin po mutacji
+                xBin after mutation
             </th>
-            <th>xReal po mutacji</th>
-            <th>f(x) po mutacji</th>
+            <th>xReal after mutation</th>
+            <th>Function value after mutation</th>
         </tr>
     </thead>
     <tbody>
@@ -92,72 +92,61 @@
             <tr>
                 <td>@(++i)</td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.XReal)
+                    @item.XReal
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.FunctionValue)
+                    @item.FunctionValue
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.TranslatedFunctionValue)
+                    @item.TranslatedFunctionValue
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.SurviveProbability)
+                    @item.SurviveProbability
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.SurviveDistributionFunction)
+                    @item.SurviveDistributionFunction
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.R)
+                    @item.R
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.XRealAfterSelection)
+                    @item.XRealAfterSelection
                 </td>
                 <td>
-                        @Html.DisplayFor(modelItem => item.XBinAfterSelection)
+                    @item.XBinAfterSelection
                 </td>
                 <td>
                     @if (item.IsParent)
                     {
-                        @Html.DisplayFor(modelItem => item.XBinAfterSelection)
+                        @item.XBinAfterSelection
                     }
                 </td>
                 <th>
                     @if(item.IsParent)
                     {
-                        @Html.DisplayFor(modelItem => item.CrossingPoint)
+                        @item.CrossingPoint
                     }
                 </th>
                 <td>
                     @if (item.IsParent)
                     {
-                        @Html.DisplayFor(modelItem => item.XBinAfterCrossing)
+                        @item.XBinAfterCrossing
                     }
                 </td>
                 <td>
-                    @if (item.IsParent)//poprawic
-                    {
-                        @Html.DisplayFor(modelItem => item.XBinAfterCrossing)
-                    }
-                    else if(!item.IsParent)
-                    {
-                        @Html.DisplayFor(modelItem => item.XBinAfterSelection)
-                    }
+                    @item.XBinAfterCrossing
                 </td>
                 <td>
-                    @*@if(item.MutantBits.Count > 0) chyba niepotrzebne
-                    {*@
-                        @Html.DisplayFor(modelItem => item.MutantBits)
-
-                    @*}*@
+                    @item.MutantBits
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.XBinAfterMutation)
+                    @item.XBinAfterMutation
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.XRealAfterMutation)
+                    @item.XRealAfterMutation
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.FunctionValueAfterMutation)
+                    @item.FunctionValueAfterMutation
                 </td>
 
             </tr>

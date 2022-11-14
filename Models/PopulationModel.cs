@@ -5,18 +5,24 @@ namespace AlgorytmGenetyczny.Models
 {
     public class PopulationModel
     {
-        [DisplayName("a")]
+        [DisplayName("Beginning of range")]
         public float RangeBeginning { get; set; }
-        [DisplayName("b")]
+
+        [DisplayName("End of range")]
         public float RangeEnd { get; set; }
-        [DisplayName("d")]
+
+        [DisplayName("Precision")]
         public double Precision { get; set; }
-        [DisplayName("N")]
+
+        [DisplayName("Number of individuals")]
         public int NumberOfIndividuals { get; set; }
+
         public int BinaryLength { get; set; }
-        [DisplayName("pk")]
+
+        [DisplayName("Crossing probability")]
         public float CrossingProbability { get; set; }
-        [DisplayName("pm")]
+
+        [DisplayName("Mutation Probability")]
         public float MutationProbability { get; set; }
         public List<IndividualModel> Individuals { get; set; }
 
