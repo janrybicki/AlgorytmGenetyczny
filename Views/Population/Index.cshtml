@@ -5,8 +5,6 @@
     int i = 0;
 }
 
-<h1>Index</h1>
-
 <form asp-action="Create">
     <div class="form-group">
         <label asp-for="RangeBeginning" class="control-label"></label>
@@ -21,8 +19,8 @@
         <input asp-for="Precision" class="form-control" />
     </div>
     <div class="form-group">
-        <label asp-for="Number" class="control-label"></label>
-        <input asp-for="Number" class="form-control" />
+        <label asp-for="NumberOfIndividuals" class="control-label"></label>
+        <input asp-for="NumberOfIndividuals" class="form-control" />
     </div>
     <div class="form-group">
         <label asp-for="CrossingProbability" class="control-label"></label>
@@ -43,20 +41,8 @@
         <tr>
             <th>Lp</th>
             <th>
-                @Html.DisplayNameFor(model => model.Individuals[0].XReal1)
+                @Html.DisplayNameFor(model => model.Individuals[0].XReal)
             </th>
-            @*<th>
-                @Html.DisplayNameFor(model => model.Individuals[0].XInt1)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Individuals[0].XBin)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Individuals[0].XInt2)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Individuals[0].XReal2)
-            </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.Individuals[0].FunctionValue)
             </th>
@@ -106,20 +92,8 @@
             <tr>
                 <td>@(++i)</td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.XReal1)
+                    @Html.DisplayFor(modelItem => item.XReal)
                 </td>
-                @*<td>
-                    @Html.DisplayFor(modelItem => item.XInt1)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.XBin)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.XInt2)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.XReal2)
-                </td>*@
                 <td>
                     @Html.DisplayFor(modelItem => item.FunctionValue)
                 </td>
@@ -136,21 +110,15 @@
                     @Html.DisplayFor(modelItem => item.R)
                 </td>
                 <td>
-                    @if (@*item.IsSurvivor*@ true)
-                    {
-                        @Html.DisplayFor(modelItem => item.XReal2)
-                    }
+                    @Html.DisplayFor(modelItem => item.XRealAfterSelection)
                 </td>
                 <td>
-                    @if (@*item.IsSurvivor*@ true )
-                    {
-                        @Html.DisplayFor(modelItem => item.XBin)
-                    }
+                        @Html.DisplayFor(modelItem => item.XBinAfterSelection)
                 </td>
                 <td>
                     @if (item.IsParent)
                     {
-                        @Html.DisplayFor(modelItem => item.XBin)
+                        @Html.DisplayFor(modelItem => item.XBinAfterSelection)
                     }
                 </td>
                 <th>
@@ -162,43 +130,34 @@
                 <td>
                     @if (item.IsParent)
                     {
-                        @Html.DisplayFor(modelItem => item.ChildXBin)
+                        @Html.DisplayFor(modelItem => item.XBinAfterCrossing)
                     }
                 </td>
                 <td>
-                    @if (item.IsParent)
+                    @if (item.IsParent)//poprawic
                     {
-                        @Html.DisplayFor(modelItem => item.ChildXBin)
+                        @Html.DisplayFor(modelItem => item.XBinAfterCrossing)
                     }
                     else if(!item.IsParent)
                     {
-                        @Html.DisplayFor(modelItem => item.XBin)
+                        @Html.DisplayFor(modelItem => item.XBinAfterSelection)
                     }
                 </td>
                 <td>
-                    @if(item.MutantBits.Count > 0)
-                    {
-                        @Html.DisplayFor(modelItem => item.MutantBitsWithSeparators)
+                    @*@if(item.MutantBits.Count > 0) chyba niepotrzebne
+                    {*@
+                        @Html.DisplayFor(modelItem => item.MutantBits)
 
-                    }
+                    @*}*@
                 </td>
                 <td>
-                    @if (true)
-                    {
-                        @Html.DisplayFor(modelItem => item.XBinAfterMutation)
-                    }
+                    @Html.DisplayFor(modelItem => item.XBinAfterMutation)
                 </td>
                 <td>
-                    @if (true)
-                    {
-                        @Html.DisplayFor(modelItem => item.XRealAfterMutation)
-                    }
+                    @Html.DisplayFor(modelItem => item.XRealAfterMutation)
                 </td>
                 <td>
-                    @if (true)
-                    {
-                        @Html.DisplayFor(modelItem => item.FunctionValueAfterMutation)
-                    }
+                    @Html.DisplayFor(modelItem => item.FunctionValueAfterMutation)
                 </td>
 
             </tr>
