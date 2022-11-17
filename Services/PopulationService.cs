@@ -8,7 +8,7 @@ namespace AlgorytmGenetyczny.Services
         public PopulationModel Population { get; private set; }
         public PopulationService()
         {
-            Population = new PopulationModel();//sprawdzic czy konieczne
+            Population = new PopulationModel();
         }
         public void CreatePopulation(PopulationModel populationModel)
         {
@@ -16,15 +16,13 @@ namespace AlgorytmGenetyczny.Services
             Population.CalculateBinaryLengh();
             Population.AddNewIndividuals();
             Population.CalculateSurviveChances();
+
+            var elite = Population.Individuals.MaxBy(x => x.FunctionValue);
+
             Population.Selection();
             Population.Cross();
             Population.Mutation();
-            foreach (var individual in Population.Individuals)
-            {
-                var xRealAfterMutation = IndividualModel.XBinToXReal(individual.XBinAfterMutation, Population.RangeBeginning, Population.RangeEnd, Population.BinaryLength);
-                individual.XRealAfterMutation = IndividualModel.Round(xRealAfterMutation, Population.Precision);
-                individual.FunctionValueAfterMutation = IndividualModel.CalculateFunctionValue(individual.XRealAfterMutation);
-            }
+            Population.ReplaceRandomIndividualWithElite(elite);
         }
 
         public void DeletePopulation()

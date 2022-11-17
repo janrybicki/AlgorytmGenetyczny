@@ -24,6 +24,9 @@ namespace AlgorytmGenetyczny.Models
 
         [DisplayName("Mutation Probability")]
         public float MutationProbability { get; set; }
+
+        [DisplayName("Elitism Selection")]
+        public bool ElitismSelection { get; set; }
         public List<IndividualModel> Individuals { get; set; }
 
         public PopulationModel()
@@ -150,7 +153,25 @@ namespace AlgorytmGenetyczny.Models
                 }
                 individual.XBinAfterMutation = sb.ToString();
                 individual.MutantBits = String.Join(", ", mutantBits);
+
+                var xRealAfterMutation = IndividualModel.XBinToXReal(individual.XBinAfterMutation, RangeBeginning, RangeEnd, BinaryLength);
+                individual.XRealAfterMutation = IndividualModel.Round(xRealAfterMutation, Precision);
+                individual.FunctionValueAfterMutation = IndividualModel.CalculateFunctionValue(individual.XRealAfterMutation);
             }
+        }
+        public void ReplaceRandomIndividualWithElite(IndividualModel elite)
+        {
+            if (Individuals.All(x => x.FunctionValueAfterMutation != elite.FunctionValue))
+            {
+                var random = new Random();
+                var randomIndividual = Individuals[random.Next(NumberOfIndividuals)];
+                if (randomIndividual.FunctionValueAfterMutation < elite.FunctionValue)
+                {
+                    randomIndividual.XRealAfterMutation = elite.XReal;
+                    randomIndividual.FunctionValueAfterMutation = IndividualModel.CalculateFunctionValue(randomIndividual.XRealAfterMutation);
+                }
+            }
+
         }
     }
 }
