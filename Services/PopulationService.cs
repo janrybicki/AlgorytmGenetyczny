@@ -26,6 +26,7 @@ namespace AlgorytmGenetyczny.Services
                 Population.Mutation();
                 Population.ReplaceIndividuals(elite);
             }
+            Population.CalculatePercentage();
         }
 
         public void DeletePopulation()

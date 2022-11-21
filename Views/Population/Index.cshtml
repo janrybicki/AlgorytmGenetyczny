@@ -55,43 +55,8 @@
                 Function value
             </th>
             <th>
-                Translated Function Value
+                Percentage
             </th>
-            <th>
-                Survive probability
-            </th>
-            <th>
-                Survive distribution function
-            </th>
-            <th>
-                r
-            </th>
-            <th>
-                XReal after selection
-            </th>
-            <th>
-                xBin after selection
-            </th>
-            <th>
-                Parents
-            </th>
-            <th>
-                Crossing Point
-            </th>
-            <th>
-                Children
-            </th>
-            <th>
-                xBin after crossing
-            </th>
-            <th>
-                Mutant bits
-            </th>
-            <th>
-                xBin after mutation
-            </th>
-            <th>xReal after mutation</th>
-            <th>Function value after mutation</th>
         </tr>
     </thead>
     <tbody>
@@ -106,55 +71,7 @@
                     @item.FunctionValue
                 </td>
                 <td>
-                    @item.TranslatedFunctionValue
-                </td>
-                <td>
-                    @item.SurviveProbability
-                </td>
-                <td>
-                    @item.SurviveDistributionFunction
-                </td>
-                <td>
-                    @item.R
-                </td>
-                <td>
-                    @item.XRealAfterSelection
-                </td>
-                <td>
-                    @item.XBinAfterSelection
-                </td>
-                <td>
-                    @if (item.IsParent)
-                    {
-                        @item.XBinAfterSelection
-                    }
-                </td>
-                <th>
-                    @if(item.IsParent)
-                    {
-                        @item.CrossingPoint
-                    }
-                </th>
-                <td>
-                    @if (item.IsParent)
-                    {
-                        @item.XBinAfterCrossing
-                    }
-                </td>
-                <td>
-                    @item.XBinAfterCrossing
-                </td>
-                <td>
-                    @item.MutantBits
-                </td>
-                <td>
-                    @item.XBinAfterMutation
-                </td>
-                <td>
-                    @item.XRealAfterMutation
-                </td>
-                <td>
-                    @item.FunctionValueAfterMutation
+                    @item.Percentage.ToString()%
                 </td>
 
             </tr>

@@ -33,9 +33,12 @@ namespace AlgorytmGenetyczny.Models
 
         public List<IndividualModel> Individuals { get; set; }
 
+        public List<IndividualModel> FinalIndividuals { get; set; }
+
         public PopulationModel()
         {
             Individuals = new List<IndividualModel>();
+            FinalIndividuals = new List<IndividualModel>();
         }
         public void CalculateBinaryLengh()
         {
@@ -176,6 +179,14 @@ namespace AlgorytmGenetyczny.Models
             {
                 Individuals[i] = new IndividualModel(Individuals[i].XRealAfterMutation, Individuals[i].FunctionValueAfterMutation);
             }
+        }
+        public void CalculatePercentage()
+        {
+            foreach (var individual in Individuals)
+            {
+                individual.Percentage = (float)Individuals.Where(x => x.XReal == individual.XReal).ToList().Count() / NumberOfIndividuals * 100;
+            }
+            Individuals = Individuals.DistinctBy(x => x.XReal).ToList();
         }
     }
 }

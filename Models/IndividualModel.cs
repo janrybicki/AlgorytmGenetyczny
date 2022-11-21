@@ -36,6 +36,8 @@ namespace AlgorytmGenetyczny.Models
         
         public float FunctionValueAfterMutation { get; set; }
 
+        public float Percentage { get; set; }
+
         public IndividualModel(float xReal, float functionValue)
         {
             XReal = xReal;
