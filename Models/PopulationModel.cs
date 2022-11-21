@@ -27,6 +27,10 @@ namespace AlgorytmGenetyczny.Models
 
         [DisplayName("Elitism Selection")]
         public bool ElitismSelection { get; set; }
+
+        [DisplayName("Number of generations")]
+        public int NumberOfGenerations { get; set; }
+
         public List<IndividualModel> Individuals { get; set; }
 
         public PopulationModel()
@@ -45,11 +49,7 @@ namespace AlgorytmGenetyczny.Models
                 var xRealRounded = IndividualModel.Round(xReal, Precision);
                 var functionValue = IndividualModel.CalculateFunctionValue(xRealRounded);
 
-                Individuals.Add(new IndividualModel()
-                {
-                    XReal = xRealRounded,
-                    FunctionValue = functionValue
-                });
+                Individuals.Add(new IndividualModel(xRealRounded, functionValue));
             }
         }
         public void CalculateSurviveChances()
@@ -159,19 +159,23 @@ namespace AlgorytmGenetyczny.Models
                 individual.FunctionValueAfterMutation = IndividualModel.CalculateFunctionValue(individual.XRealAfterMutation);
             }
         }
-        public void ReplaceRandomIndividualWithElite(IndividualModel elite)
+        public void ReplaceIndividuals(IndividualModel elite)
         {
-            if (Individuals.All(x => x.FunctionValueAfterMutation != elite.FunctionValue))
+            if (ElitismSelection && Individuals.All(x => x.FunctionValueAfterMutation != elite.FunctionValue))
             {
                 var random = new Random();
                 var randomIndividual = Individuals[random.Next(NumberOfIndividuals)];
+
                 if (randomIndividual.FunctionValueAfterMutation < elite.FunctionValue)
                 {
                     randomIndividual.XRealAfterMutation = elite.XReal;
                     randomIndividual.FunctionValueAfterMutation = IndividualModel.CalculateFunctionValue(randomIndividual.XRealAfterMutation);
                 }
             }
-
+            for (int i = 0; i < NumberOfIndividuals; i++)
+            {
+                Individuals[i] = new IndividualModel(Individuals[i].XRealAfterMutation, Individuals[i].FunctionValueAfterMutation);
+            }
         }
     }
 }

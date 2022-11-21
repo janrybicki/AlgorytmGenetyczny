@@ -36,6 +36,12 @@ namespace AlgorytmGenetyczny.Models
         
         public float FunctionValueAfterMutation { get; set; }
 
+        public IndividualModel(float xReal, float functionValue)
+        {
+            XReal = xReal;
+            FunctionValue = functionValue;
+        }
+
         public static float GenerateRandomXReal(float rangeBeginning, float rangeEnd)
         {
             var random = new Random();

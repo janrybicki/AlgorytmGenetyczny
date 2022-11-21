@@ -15,14 +15,17 @@ namespace AlgorytmGenetyczny.Services
             Population = populationModel;
             Population.CalculateBinaryLengh();
             Population.AddNewIndividuals();
-            Population.CalculateSurviveChances();
 
-            var elite = Population.Individuals.MaxBy(x => x.FunctionValue);
+            for (int i = 0; i < Population.NumberOfGenerations && Population.Individuals.Select(x => x.XReal).Distinct().Count() > 1; i++)//dodac warunek, ze jak wszystkie sa takie same to konczymy
+            {
+                Population.CalculateSurviveChances();
+                var elite = Population.Individuals.MaxBy(x => x.FunctionValue);
 
-            Population.Selection();
-            Population.Cross();
-            Population.Mutation();
-            Population.ReplaceRandomIndividualWithElite(elite);
+                Population.Selection();
+                Population.Cross();
+                Population.Mutation();
+                Population.ReplaceIndividuals(elite);
+            }
         }
 
         public void DeletePopulation()
