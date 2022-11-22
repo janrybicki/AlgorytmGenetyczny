@@ -84,7 +84,6 @@ namespace AlgorytmGenetyczny.Models
             for (int i = 0; i < NumberOfIndividuals; i++)
             {
                 var r = (float)random.NextDouble();
-                Individuals[i].R = r;
                 foreach (var individual in Individuals)
                 {
                     if (r < individual.SurviveDistributionFunction)
@@ -119,8 +118,6 @@ namespace AlgorytmGenetyczny.Models
             for (int i = 0; i < parents.Count(); i += 2)
             {
                 var crossingPoint = random.Next(1, BinaryLength);
-                parents[i].CrossingPoint = crossingPoint;
-                parents[i + 1].CrossingPoint = crossingPoint;
 
                 var firstParent = parents[i].XBinAfterSelection;
                 var secondParent = parents[i + 1].XBinAfterSelection;
@@ -155,7 +152,6 @@ namespace AlgorytmGenetyczny.Models
                     }
                 }
                 individual.XBinAfterMutation = sb.ToString();
-                individual.MutantBits = String.Join(", ", mutantBits);
 
                 var xRealAfterMutation = IndividualModel.XBinToXReal(individual.XBinAfterMutation, RangeBeginning, RangeEnd, BinaryLength);
                 individual.XRealAfterMutation = IndividualModel.Round(xRealAfterMutation, Precision);

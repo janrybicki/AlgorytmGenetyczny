@@ -26,13 +26,7 @@ namespace AlgorytmGenetyczny.Models
 
         public float SurviveDistributionFunction { get; set; }
 
-        public float R { get; set; }
-
         public bool IsParent { get; set; } = false;
-
-        public int CrossingPoint { get; set; }
-
-        public string MutantBits { get; set; } = string.Empty;
         
         public float FunctionValueAfterMutation { get; set; }
 
@@ -59,19 +53,13 @@ namespace AlgorytmGenetyczny.Models
                 ? xReal - xReal % precision
                     : xReal + Math.Sign(xReal) * precision - xReal % precision);
         }
-        public string XRealToXBin(int binaryLength, float rangeBeginning, float rangeEnd)
-        {
-            var xInt = (int)Math.Round(1 / (rangeEnd - rangeBeginning) * (XReal - rangeBeginning) * (Math.Pow(2, binaryLength) - 1));
-            var xBin = new StringBuilder(Convert.ToString(xInt, 2));
-            return xBin.Insert(0, new String('0', binaryLength - xBin.Length)).ToString();
-        }
-        public static string XRealToXBin(int binaryLength, float rangeBeginning, float rangeEnd, float xReal)//do wywalenia pozniej
+        public static string XRealToXBin(int binaryLength, float rangeBeginning, float rangeEnd, float xReal)
         {
             var xInt = (int)Math.Round(1 / (rangeEnd - rangeBeginning) * (xReal - rangeBeginning) * (Math.Pow(2, binaryLength) - 1));
             var xBin = new StringBuilder(Convert.ToString(xInt, 2));
             return xBin.Insert(0, new String('0', binaryLength - xBin.Length)).ToString();
         }
-        public static float XBinToXReal(string xBin, float rangeBeginning, float rangeEnd, int binaryLength)//rozwazyc zmiane xBin na property XBinAfterSelection
+        public static float XBinToXReal(string xBin, float rangeBeginning, float rangeEnd, int binaryLength)
         {
             var xInt = Convert.ToInt32(xBin, 2);
             return (float)(xInt * (rangeEnd - rangeBeginning) / (Math.Pow(2, binaryLength) - 1) + rangeBeginning);
