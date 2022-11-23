@@ -6,33 +6,41 @@
 }
 
 <form asp-action="Create">
+    <div asp-validation-summary="ModelOnly" class="text-danger"><</div>
     <div class="form-group">
         <label asp-for="RangeBeginning" class="control-label"></label>
         <input asp-for="RangeBeginning" class="form-control" />
+        <span asp-validation-for="RangeBeginning" class="text-danger"></span>
     </div>
     <div class="form-group">
         <label asp-for="RangeEnd" class="control-label"></label>
         <input asp-for="RangeEnd" class="form-control" />
+        <span asp-validation-for="RangeEnd" class="text-danger"></span>
     </div>
     <div class="form-group">
         <label asp-for="Precision" class="control-label"></label>
         <input asp-for="Precision" class="form-control" />
+        <span asp-validation-for="Precision" class="text-danger"></span>
     </div>
     <div class="form-group">
         <label asp-for="NumberOfIndividuals" class="control-label"></label>
         <input asp-for="NumberOfIndividuals" class="form-control" />
+        <span asp-validation-for="NumberOfIndividuals" class="text-danger"></span>
     </div>
     <div class="form-group">
         <label asp-for="NumberOfGenerations" class="control-label"></label>
         <input asp-for="NumberOfGenerations" class="form-control" />
+        <span asp-validation-for="NumberOfGenerations" class="text-danger"></span>
     </div>
     <div class="form-group">
         <label asp-for="CrossingProbability" class="control-label"></label>
         <input asp-for="CrossingProbability" class="form-control" />
+        <span asp-validation-for="CrossingProbability" class="text-danger"></span>
     </div>
     <div class="form-group">
         <label asp-for="MutationProbability" class="control-label"></label>
         <input asp-for="MutationProbability" class="form-control" />
+        <span asp-validation-for="MutationProbability" class="text-danger"></span>
     </div>
     <div class="form-group">
         <label asp-for="ElitismSelection" class="control-label"></label>
@@ -81,3 +89,9 @@
 <form asp-action="Delete">
     <input type="submit" value="Wyczyść" class="btn btn-danger" />
 </form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }
