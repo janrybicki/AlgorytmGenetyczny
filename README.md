@@ -4,6 +4,4 @@ This is an ASP.NET MVC app using genetic alghorithm to find the maximum of funct
 
 f(x) = (x mod 1)(cos(20πx) - sin(x)).
 
-It is hosted here: https://algorytmgenetycznyjanrybicki.azurewebsites.net/
-
 https://en.wikipedia.org/wiki/Genetic_algorithm
